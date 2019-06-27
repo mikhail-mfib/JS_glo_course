@@ -1,9 +1,9 @@
-let money = 300;
-let income = 110;
-let addExpenses = 15;
-let deposit = 30;
-let mission = 'Выучить иностранный язык';
-let period = 'month';
+let money;
+let income;
+let addExpenses;
+let deposit;
+let mission;
+let period;
 
-alert('Задача на завтра: ' + mission);
+alert('Первый алерт');
 console.log('Первое сообщение в консоли');
