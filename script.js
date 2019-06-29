@@ -10,4 +10,4 @@ console.log(typeof money, typeof income, typeof deposit);
 console.log(income.length);
 console.log(`Период ${period} месяцев. Цель заработать ${mission} рублей/долларов/гривен/юани`);
 console.log(addExpenses.toLowerCase().split(', '));
-console.log(`Доход за месяц: ${budgetDay}. Остаток: ${money % 30}`);
+console.log(`Доход за день: ${budgetDay}. Остаток: ${money % 30}`);
