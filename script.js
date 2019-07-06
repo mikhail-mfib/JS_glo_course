@@ -4,7 +4,6 @@ let money,
     start = function() {
         do {
             money = +prompt('Введите ваш доход?', 1000000);
-            console.log(money);
         } while (isNaN(money) || money == '' || money == null);
 };
 start();
@@ -45,7 +44,6 @@ let appData = {
         } while (!isNaN(addExpenses) || addExpenses == '' || addExpenses == null)
 
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
-        appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
         for(let i = 0; i < 2; i++) {
             let arrExpenses = [];
@@ -59,6 +57,8 @@ let appData = {
                 appData.expenses[arrExpenses[i]] = expenseCheck[i];
             } while (isNaN(expenseCheck[i]) || expenseCheck[i] == '' || expenseCheck[i] == null);
         }
+
+        appData.deposit = confirm('Есть ли у вас депозит в банке?');
     },
     getExpensesMonth: function() {
         for (let key in appData.expenses) {
@@ -101,11 +101,11 @@ let appData = {
 };
 
 appData.asking();
+appData.getInfoDeposit();
 appData.getExpensesMonth();
 appData.getBudget();
 appData.getStatusIncome();
 appData.getTargetMonth();
-appData.getInfoDeposit();
 appData.calcSaveMoney();
 
 //Задание на вывод строки
