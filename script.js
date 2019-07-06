@@ -5,7 +5,7 @@ let money,
         do {
             money = +prompt('Введите ваш доход?', 1000000);
             console.log(money);
-        } while (isNaN(money));
+        } while (isNaN(money) || money == '' || money == null);
 };
 start();
 
@@ -24,12 +24,11 @@ let appData = {
     mission: 10000000,
     period: 11,
     asking: function() {
-
         if(confirm('Есть ли у вас дополнительный заработок?')) {
             let itemIncome = '';
             do {
                 itemIncome = prompt('Какой у вас дополнительный заработок?', 'фриланс');
-            } while (itemIncome == '' || itemIncome == null);
+            } while (!isNaN(itemIncome) || itemIncome == '' || itemIncome == null);
             
             let cashIncome = 0;
             do {
@@ -39,23 +38,27 @@ let appData = {
             appData.income[itemIncome] = cashIncome;
         }
 
-        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
+        let addExpenses = '';
+        do {
+            addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
             'развлечения, недвижимость, машина');
-            appData.addExpenses = addExpenses.toLowerCase().split(', ');
-            appData.deposit = confirm('Есть ли у вас депозит в банке?');
+        } while (!isNaN(addExpenses) || addExpenses == '' || addExpenses == null)
 
-            for(let i = 0; i < 2; i++) {
-                let arrExpenses = [];
-                let expenseCheck = [];
+        appData.addExpenses = addExpenses.toLowerCase().split(', ');
+        appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
-                arrExpenses[i] = prompt('Какие обязательные ежемесячные расходы у вас есть?',
-                'питание');
+        for(let i = 0; i < 2; i++) {
+            let arrExpenses = [];
+            let expenseCheck = [];
 
-                do {
-                    expenseCheck[i] = +prompt('Во сколько это обойдется?', 30000);
-                    appData.expenses[arrExpenses[i]] = expenseCheck[i];
-                } while (isNaN(expenseCheck[i]) || expenseCheck[i] == '' || expenseCheck[i] == null);
-            }
+            arrExpenses[i] = prompt('Какие обязательные ежемесячные расходы у вас есть?',
+            'питание');
+
+            do {
+                expenseCheck[i] = +prompt('Во сколько это обойдется?', 30000);
+                appData.expenses[arrExpenses[i]] = expenseCheck[i];
+            } while (isNaN(expenseCheck[i]) || expenseCheck[i] == '' || expenseCheck[i] == null);
+        }
     },
     getExpensesMonth: function() {
         for (let key in appData.expenses) {
@@ -100,6 +103,10 @@ let appData = {
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
+appData.getStatusIncome();
+appData.getTargetMonth();
+appData.getInfoDeposit();
+appData.calcSaveMoney();
 
 //Задание на вывод строки
 let expensesIncomeArr = appData.addExpenses;
