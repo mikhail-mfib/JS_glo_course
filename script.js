@@ -41,7 +41,7 @@ let appData = {
         do {
             addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
             'развлечения, недвижимость, машина');
-        } while (!isNaN(addExpenses) || addExpenses == '' || addExpenses == null)
+        } while (!isNaN(addExpenses) || addExpenses == '' || addExpenses == null);
 
         appData.addExpenses = addExpenses.toLowerCase().split(', ');
 
