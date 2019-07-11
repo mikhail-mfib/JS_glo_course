@@ -76,6 +76,10 @@ let appData = {
         cancel.setAttribute('style', 'display: inline-block');
     },
     showResult: function() {
+        periodSelect.addEventListener('input', function() {
+            periodAmount.textContent = periodSelect.value;
+            incomePeriodValue.value = appData.calcPeriod();
+        });
         budgetMonthValue.value = appData.budgetMonth;
         budgetDayValue.value = appData.budgetDay;
         expensesMonthValue.value = appData.expensesMonth;
@@ -230,6 +234,6 @@ expensesPlus.addEventListener('click', appData.addExpensesBlock);
 expensesPlus.addEventListener('click', appData.checkInputFunct);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 incomePlus.addEventListener('click', appData.checkInputFunct);
-periodSelect.addEventListener('change', function() {
+periodSelect.addEventListener('input', function() {
     periodAmount.textContent = periodSelect.value;
 });
