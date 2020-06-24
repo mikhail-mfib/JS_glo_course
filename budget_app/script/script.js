@@ -336,14 +336,20 @@ class AppData {
     }
     checkCookie(){ //проверка на соответствие куки и ls
         const ls = JSON.parse(localStorage.getItem('inf'));
-        for(const key in ls){
-            if(this.getCookie(key) !== JSON.stringify(ls[key])) {
-                this.reset();
-                window.location.reload();
-                return false;
-            }
-        }
-        return true;
+		
+		if(ls) {
+			for(const key in ls){
+				if(this.getCookie(key) !== JSON.stringify(ls[key])) {
+					this.reset();
+					window.location.reload();
+					return false;
+				}
+			}
+			
+			return true;
+		}
+		
+        return false;
     }
     save(){
         if(this.checkCookie()){
